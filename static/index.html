@@ -208,7 +208,8 @@
       }
       const blob = await res.blob();
       const disposition = res.headers.get("Content-Disposition") || "";
-      let filename = "download";
+      const extByMode = { audio: "mp3", video: "mp4", video_only: "mp4" };
+      let filename = `download.${extByMode[mode] || "bin"}`;
       const match = disposition.match(/filename="?([^"]+)"?/);
       if (match) filename = match[1];
 
